@@ -33,12 +33,27 @@ const createPostElement = (thumbnail, post) => {
   elCol.appendChild(elCard);
 
   // EDIT HERE
+  
+    elCardTitle.innerHTML = post.title
+    elCardImg.src = thumbnail
+    elCardBtn.href= '/post.html?post_id=$POST_ID'
 
   return elCol;
 };
 
 const renderPosts = async () => {
   // EDIT HERE
+  let posts = await getPosts();
+  let thumbnail;
+
+  //console.log(posts)
+
+  let daftarBerita = document.querySelector("#daftar-berita");  
+  Array.from(posts).forEach(async (post) => {
+    thumbnail = await getRandomPic();
+    daftarBerita.appendChild(createPostElement(thumbnail, post));
+  });
+
 };
 
 renderPosts();
