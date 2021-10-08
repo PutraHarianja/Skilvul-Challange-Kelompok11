@@ -34,9 +34,9 @@ const createPostElement = (thumbnail, post) => {
 
   // EDIT HERE
   
-    elCardTitle.innerHTML = post.title
-    elCardImg.src = thumbnail
-    elCardBtn.href= '/post.html?post_id=$POST_ID'
+  elCardTitle.innerHTML = post.title
+  elCardImg.src = thumbnail
+  elCardBtn.href= `/post.html?post_id=${post.id}`
 
   return elCol;
 };
@@ -47,11 +47,9 @@ const renderPosts = async () => {
   let thumbnail;
 
   //console.log(posts)
-
-  let daftarBerita = document.querySelector("#daftar-berita");  
   Array.from(posts).forEach(async (post) => {
     thumbnail = await getRandomPic();
-    daftarBerita.appendChild(createPostElement(thumbnail, post));
+    elDaftarBerita.appendChild(createPostElement(thumbnail, post));
   });
 
 };
